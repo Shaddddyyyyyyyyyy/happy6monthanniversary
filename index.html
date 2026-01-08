@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy 6 Months Anniversary Babyyyyy💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', 'Poppins' ;
+  background: linear-gradient(180deg, #ffd6e8, #ffeaf4);
+  overflow-x: hidden;
+  text-align: center;
+  color: #ff5fa2;
+}
+
+h1 {
+  margin-top: 60px;
+  font-size: clamp(1.8em, 5vw, 2.7em);
+}
+
+p {
+  font-size: 1.15em;
+  padding: 0 20px;
+}
+
+.card {
+  background: #fff0f7;
+  border-radius: 25px;
+  padding: 30px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(255,105,180,0.25);
+}
+
+button {
+  background: #ff85b3;
+  border: none;
+  padding: 15px 25px;
+  font-size: 1em;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff5fa2;
+  transform: scale(1.05);
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(255, 214, 232, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.4s;
+  z-index: 10;
+}
+
+.modal-content {
+  background: #fff0f7;
+  border-radius: 25px;
+  padding: 30px;
+  width: 85%;
+  max-width: 400px;
+  box-shadow: 0 15px 40px rgba(255,105,180,0.35);
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* HEARTS */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 22px;
+  animation: float 6s linear infinite;
+  color: #ff69b4;
+}
+
+@keyframes float {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100vh); opacity: 0; }
+}
+
+footer {
+  margin: 40px 0;
+  color: #ff85b3;
+}
+
+/* Countdown */
+#countdown {
+  font-size: 1em;
+  margin-top: 15px;
+  color: #ff3f8e;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Happy 6 Months, My Love 💕</h1>
+
+<div class="card">
+  <p>
+    Past 6 months have been the best moments of my life babyyy 😘😘it's been 6 months since we first met in person we both were shy and slowly and gradually approached towards each other i fell even harder when you came towards me in front of Anu Book Store handed me the gift you bought with so much love slowly held me being awkward but slowly we became comfortable. It's been 6 months but we have a lifetime to go together😘😘❤️❤️. The moments we spent together, the memories we created together our first kiss our first encounter, our small to big fights arguments but so much love hidden behind those angry faces for each other the tears the laughter the joy with you everything feels so magical babyyyy with youu😘😘😘😘. My Lajuuu😘😘, ma sansar kai sabai bhanda bhagyamani manxey xu yo juni ma tmilai pauna sake past life ma dherai nai ramro kam haru gareko hola maile ki yo juni ma tmi mero bhayou aba sadhai ko lagi merai bhayera basnu huss lajuuu 🥹❤️. I loveeeeeeeee you so so muchhhh mero pyarooooooooooo girlfieeeeeeeeeeeee my wifeyyyyyyyyy my budiiiiiiiiii😘😘😘😘😘😘❤️❤️❤️❤️❤️❤️❤️❤️
+  </p>
+
+  <button id="openSurprise">Click for a Surprise 💝</button>
+
+  <div id="countdown"></div>
+</div>
+<footer>I LOVE YOUU SO SO MUCH BABYYYYY 🥹💖</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <p id="typingText"></p>
+    <button id="yesBtn">Always 💖</button>
+  </div>
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="loveSound" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4c6d8c9fcb.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+/* BACKGROUND MUSIC */
+const sound = document.getElementById("loveSound");
+
+// Try autoplay, fallback if blocked
+function playMusic() {
+  sound.volume = 0;
+  sound.play().then(() => {
+    let vol = 0;
+    const fadeIn = setInterval(() => {
+      if (vol < 1) {
+        vol += 0.01;
+        sound.volume = vol;
+      } else {
+        clearInterval(fadeIn);
+      }
+    }, 30);
+  }).catch(err => {
+    console.log("Autoplay blocked, will play on first click.");
+  });
+}
+
+// Play music on first user interaction if autoplay blocked
+document.body.addEventListener("click", playMusic, { once: true });
+document.body.addEventListener("touchstart", playMusic, { once: true });
+
+/* MODAL */
+const modal = document.getElementById("modal");
+const openBtn = document.getElementById("openSurprise");
+const typingText = document.getElementById("typingText");
+
+const message = "Will you marry me one day babyyy and be mine forever and in every lifetime ?🥹💕\n\nWill you keep loving me forever?";
+
+openBtn.addEventListener("click", openModal);
+openBtn.addEventListener("touchstart", openModal);
+
+function openModal() {
+  modal.classList.add("show");
+  // play music if not already playing
+  if (sound.paused) playMusic();
+  startTyping();
+}
+
+/* TYPING EFFECT */
+let index = 0;
+function startTyping() {
+  typingText.innerHTML = "";
+  index = 0;
+  const interval = setInterval(() => {
+    typingText.innerHTML += message[index];
+    index++;
+    if (index >= message.length) clearInterval(interval);
+  }, 40);
+}
+
+/* HEARTS */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createHeart, 400);
+
+/* COUNTDOWN — CHANGE THIS DATE 💕 */
+const startDate = new Date("2025-07-08");
+const countdownEl = document.getElementById("countdown");
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = now - startDate;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  countdownEl.innerHTML = `💞 ${days} days ${hours}h ${minutes}m ${seconds}s of loving you`;
+}
+
+// Initial call
+updateCountdown();
+
+// Update countdown every second
+setInterval(updateCountdown, 1000);
+
+
+/* YES BUTTON */
+document.getElementById("yesBtn").addEventListener("click", () => {
+  modal.classList.remove("show");
+});
+// Function to play music with fade-in
+function playMusic() {
+  sound.volume = 0; // start muted
+  sound.play().then(() => {
+    let vol = 0;
+    const fadeIn = setInterval(() => {
+      if (vol < 1) {
+        vol += 0.01;
+        sound.volume = vol;
+      } else {
+        clearInterval(fadeIn);
+      }
+    }, 30);
+  }).catch(err => {
+    console.log("Autoplay blocked, will play on first click.");
+  });
+}
+
+// Play music on first user interaction (for mobile/browser autoplay rules)
+document.body.addEventListener("click", playMusic, { once: true });
+document.body.addEventListener("touchstart", playMusic, { once: true });
+
+</script>
+<!-- BACKGROUND MUSIC -->
+<audio id="loveSound" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4c6d8c9fcb.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
+</body>
+</html>
+
+
